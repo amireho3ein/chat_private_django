@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render,  redirect
 
 from .models import Room
 
 
 def index_view(request):
-
+    if not request.user.is_authenticated:
+        return redirect("login-user")
     context = {
         'rooms': Room.objects.all()
     }
@@ -13,7 +14,7 @@ def index_view(request):
 
 
 def room_view(request, room_name):
-    chat_room = Room.objects.get_or_create(name=room_name)
+    chat_room, created = Room.objects.get_or_create(name=room_name)
     context = {
         'room': chat_room
     }

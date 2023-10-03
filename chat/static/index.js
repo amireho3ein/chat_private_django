@@ -1,23 +1,23 @@
 console.log("Sanity check from index.js.");
 
 // focus 'roomInput' when user opens the page
-document.querySelector("#roomInput").focus();
+document.getElementById("roomInput").focus();
 
 // submit if the user presses the enter key
-document.querySelector("#roomInput").onkeyup = function(e) {
-    if (e.keyCode === 13) {  // enter key
-        document.querySelector("#roomConnect").click();
+document.getElementById("roomInput").onkeyup = function(e) {
+    if (e.key === "Enter") {
+        document.getElementById("roomConnect").click();
     }
 };
 
 // redirect to '/room/<roomInput>/'
-document.querySelector("#roomConnect").onclick = function() {
-    let roomName = document.querySelector("#roomInput").value;
+document.getElementById("roomConnect").onclick = function() {
+    let roomName = document.getElementById("roomInput").value;
     window.location.pathname = "chat/" + roomName + "/";
 }
 
 // redirect to '/room/<roomSelect>/'
-document.querySelector("#roomSelect").onchange = function() {
-    let roomName = document.querySelector("#roomSelect").value.split(" (")[0];
+document.getElementById("roomSelect").onchange = function() {
+    let roomName = document.getElementById("roomSelect").value.split(" (")[0];
     window.location.pathname = "chat/" + roomName + "/";
 }
